@@ -1,6 +1,7 @@
 package menu;
 
 import datastructures.queue.Que;
+import datastructures.stack.Stack;
 
 import java.util.Scanner;
 
@@ -54,6 +55,7 @@ public class Menu<T> {
 //    }
     int SIZE;
     Que<Object> q = new Que<>(SIZE);
+    Stack<Object> stack = new Stack<>(SIZE);
     public Menu(int size) {
         SIZE = size;
     }
@@ -104,36 +106,48 @@ public class Menu<T> {
     public void stackOperations() {
         System.out.println(" ");
         System.out.println("Choose one operation");
-        System.out.print("1. Stack\n2. Push\n3. Pop\n4. peek\n5. Is-empty\n6. size\n7. exit");
+        System.out.print("1. stack\n2. Push\n3. Pop\n4. peek\n5. Is-empty\n6. size\n7. stop");
         System.out.println(" ");
-        Scanner sc = new Scanner(System.in);
-        boolean counter = true;
+        int counter = 0;
+        int length = 0;
 
         try{
-            while(counter)  {
-                Scanner sc2 = new Scanner(System.in);
+            while(counter == 0)  {
+                Scanner sc = new Scanner(System.in);
                 System.out.println();
                 System.out.println("select operation");
-                int option = sc2.nextInt();
-                if (option > 0 && option < 8) {
+                int option = sc.nextInt();
+                if (option > 0 && option < 7) {
                     switch (option) {
-                        case 1 -> System.out.println("Stack");
-                        case 2 -> System.out.println("Push");
-                        case 3 -> System.out.println("pop");
-                        case 4 -> System.out.println("peek");
-                        case 5 -> System.out.println("Is-empty");
-                        case 6 -> System.out.println("size");
-                        case 7 ->{
-                            System.out.println("Good Bye!!");
-                            counter = false;
+                        case 1 -> stack.stack();
+                        case 2 -> {
+                            System.out.println("What you want to insert : ");
+                            String pushInput = sc.next();
+                            stack.push((T) pushInput);
+                            length++;
                         }
-
+                        case 3 -> {
+                            stack.pop();
+                        }
+                        case 4 -> stack.peek();
+                        case 5 -> System.out.println(stack.isEmpty());
+                        case 6 -> {
+                            int initialLength = stack.size(SIZE);
+                            System.out.println("Pre-defined size = "+initialLength);
+                            System.out.println("Actual size = "+length);
+                        }
+                        case 7 -> {
+                            counter = 7;
+                            System.out.println("GOOD BYE");
+                            System.exit(-1);
+                        }
                     }
                 } else {
-                    System.out.println("Please chose option between 1 - 7 only !");
+                    System.out.println("please enter 1-6 only");
                 }
             }
         }catch (Exception e){
+            System.out.println("Please chose between 1 - 6 only !");
             stackOperations();
         }
     }
