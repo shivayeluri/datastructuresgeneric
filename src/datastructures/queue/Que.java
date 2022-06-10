@@ -1,7 +1,6 @@
 package datastructures.queue;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Que<T> {
     int SIZE;
@@ -20,19 +19,19 @@ public class Que<T> {
     public void queue(){
         System.out.println(items);
     }
-    boolean isQueFull() {
+    public boolean isQueFull() {
         return front == 0 && rear == SIZE - 1;
     }
 
-    boolean isQueEmpty() {
+    public boolean isQueEmpty() {
         return front == -1;
     }
 
-    public void size(int SIZE){
-        System.out.println("predefined size : "+SIZE);
+    public int size(int SIZE){
+        return SIZE;
     }
 
-    void enQueue(T element) {
+    public void enQueue(T element) {
         if (isQueFull()) {
             System.out.println("Queue is full");
             System.exit(-1);
@@ -48,7 +47,7 @@ public class Que<T> {
 
     }
 
-    void deQueue() {
+    public void deQueue() {
         if (isQueEmpty()) {
             System.out.println("Queue is empty");
         } else {
@@ -65,7 +64,7 @@ public class Que<T> {
 
     }
 
-    void display() {
+    public void display() {
         if (isQueEmpty()) {
             System.out.println("Empty Queue");
         } else {
@@ -81,4 +80,5 @@ public class Que<T> {
         }
 
     }
+    
 }
