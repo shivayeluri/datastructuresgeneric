@@ -53,7 +53,7 @@ public class Stack<T> {
     }
 
     public Boolean isFull() {
-        return top == capacity - 1;
+        return top == capacity-1 ;
     }
 
     public void printStack() {
