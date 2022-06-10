@@ -52,34 +52,41 @@ public class Menu<T> {
 //    }
 
     public void queueOperation() {
+        
         System.out.println(" ");
         System.out.println("Choose one operation");
-        System.out.print("1. queue\n2. enqueue\n3. dequeue\n4. isEmpty\n5. size\n6. exit");
+        System.out.print("1. queue\n2. enqueue\n3. dequeue\n4. is-empty\n5. size\n6.exit");
         System.out.println(" ");
-        Scanner sc1 = new Scanner(System.in);
-        boolean counter = true;
+        int counter = 0;
 
         try {
-            while (counter) {
+            while (counter != 6) {
+                Scanner sc = new Scanner(System.in);
                 System.out.println("select operation");
-                int option = sc1.nextInt();
+                int option = sc.nextInt();
                 if (option > 0 && option < 7) {
                     switch (option) {
-                        case 1 -> System.out.println("Queue");
-                        case 2 -> System.out.println("enqueue");
-                        case 3 -> System.out.println("dequeue");
-                        case 4 -> System.out.println("isEmpty");
-                        case 5 -> System.out.println("size");
+                        case 1 -> queue();
+                        case 2 -> {
+                            Scanner sc1 = new Scanner(System.in);
+                            System.out.println("what you want to enqueue");
+                            String input = sc1.nextLine();
+                            enQueue((T) input);
+                            display();
+                        }
+                        case 3 -> deQueue();
+                        case 4 -> isQueEmpty();
+                        case 5 -> size(SIZE);
                         case 6 -> {
-                            System.out.println("Good Bye!!");
-                            counter = false;
+                            display();
+                            counter = 6;
+                            System.exit(-1);
                         }
                     }
-                }else{
-                    System.out.println("Please chose option between 1 - 6 only !");
                 }
             }
         } catch (Exception e) {
+            System.out.println("If your selecting queue operations, Please chose between 1 - 4 only !");
             queueOperation();
         }
     }
