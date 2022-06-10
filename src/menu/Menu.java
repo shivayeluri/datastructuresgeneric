@@ -1,5 +1,7 @@
 package menu;
 
+import datastructures.queue.Que;
+
 import java.util.Scanner;
 
 public class Menu<T> {
@@ -50,14 +52,19 @@ public class Menu<T> {
 //            linkedListOperations();
 //        }
 //    }
+    int SIZE;
+    Que<Object> q = new Que<>(SIZE);
+    public Menu(int size) {
+        SIZE = size;
+    }
 
     public void queueOperation() {
-        
         System.out.println(" ");
         System.out.println("Choose one operation");
         System.out.print("1. queue\n2. enqueue\n3. dequeue\n4. is-empty\n5. size\n6.exit");
         System.out.println(" ");
         int counter = 0;
+        int length = 0;
 
         try {
             while (counter != 6) {
@@ -66,19 +73,22 @@ public class Menu<T> {
                 int option = sc.nextInt();
                 if (option > 0 && option < 7) {
                     switch (option) {
-                        case 1 -> queue();
+                        case 1 -> q.queue();
                         case 2 -> {
                             Scanner sc1 = new Scanner(System.in);
                             System.out.println("what you want to enqueue");
-                            String input = sc1.nextLine();
-                            enQueue((T) input);
-                            display();
+                            String input = sc1.next();
+                            q.enQueue(input);
+                            length+=1;
                         }
-                        case 3 -> deQueue();
-                        case 4 -> isQueEmpty();
-                        case 5 -> size(SIZE);
+                        case 3 -> q.deQueue();
+                        case 4 -> System.out.println(q.isQueEmpty());
+                        case 5 -> {
+                            System.out.println("pre-defined size = "+ q.size(SIZE));
+                            System.out.println("actual size = "+(q.size(SIZE) - length));
+                        }
                         case 6 -> {
-                            display();
+                            q.display();
                             counter = 6;
                             System.exit(-1);
                         }
