@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class Que<T> {
     int SIZE;
-//    T[] items;
     ArrayList<T> items;
     int front;
     int rear;
@@ -16,45 +15,6 @@ public class Que<T> {
         items = new ArrayList<T>(SIZE);
         front = -1;
         rear = -1;
-    }
-
-    public void operation() {
-        System.out.println(" ");
-        System.out.println("Choose one operation");
-        System.out.print("1. enqueue\n2. dequeue\n3. print\n4. quit");
-        System.out.println(" ");
-        int counter = 0;
-
-        try {
-            while (counter != 4) {
-                Scanner sc = new Scanner(System.in);
-                System.out.println("select operation");
-                int option = sc.nextInt();
-                if (option > 0 && option < 5) {
-                    switch (option) {
-                        case 1 -> {
-                            Scanner sc1 = new Scanner(System.in);
-                            System.out.println("what you want to enqueue");
-                            String input = sc1.nextLine();
-                            enQueue((T) input);
-                            display();
-                        }
-                        case 2 -> size(SIZE);
-                        case 3 -> display();
-                        case 4 -> {
-                            display();
-                            counter = 4;
-                            System.exit(-1);
-                        }
-                    }
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("If your selecting queue operations, Please chose between 1 - 4 only !");
-//            System.out.println("If you entering input data or index value, Please make sure that you have entered numbers only !");
-            operation();
-//            e.printStackTrace();
-        }
     }
 
     public void queue(){
